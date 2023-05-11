@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.devsuperior.dslistGamer.dto.GameDTO;
 import com.devsuperior.dslistGamer.dto.GameMinDTO;
 import com.devsuperior.dslistGamer.entities.Game;
+import com.devsuperior.dslistGamer.projection.GameMinProjection;
 import com.devsuperior.dslistGamer.repositories.GameRepository;
 import com.devsuperior.dslistGamer.services.exceptions.ResourceNotFoundException;
 
@@ -33,6 +34,14 @@ public class GameService {
 		Optional<Game> obj = repository.findById(id);
 		Game entity = obj.orElseThrow(() ->  new ResourceNotFoundException("Id not found"));
 		return new GameDTO(entity);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<GameMinDTO> findByList(Long listId) {
+		List<GameMinProjection> result = repository.searchByList(listId);
+		List<GameMinDTO> dto = result.stream().map(x -> new GameMinDTO(x))
+				.collect(Collectors.toList());
+		return dto;
 	}
 	
 }

@@ -3,6 +3,7 @@ package com.devsuperior.dslistGamer.dto;
 import java.io.Serializable;
 
 import com.devsuperior.dslistGamer.entities.Game;
+import com.devsuperior.dslistGamer.projection.GameMinProjection;
 
 public class GameMinDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -31,6 +32,14 @@ public class GameMinDTO implements Serializable{
 		year = entity.getYear();
 		imgUrl = entity.getImgUrl();
 		shortDescription = entity.getShortDescription();
+	}
+	
+	public GameMinDTO(GameMinProjection projection) {
+		id = projection.getId();
+		title = projection.getTitle();
+		year = projection.getYear();
+		imgUrl = projection.getImgUrl();
+		shortDescription = projection.getShortDescription();
 	}
 
 
