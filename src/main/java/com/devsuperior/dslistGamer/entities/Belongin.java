@@ -8,7 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_belongin")
+@Table(name = "tb_belonging")
 public class Belongin implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
